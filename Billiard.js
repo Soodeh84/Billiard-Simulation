@@ -27,11 +27,16 @@ camera.position.set(12, 7, 15);
 camera.lookAt(scene.position);
 
 //add spot light and shadow******************************
-scene.add(new THREE.AmbientLight('#e0ffff'));
-const light = new THREE.SpotLight('white');
+scene.add(new THREE.AmbientLight('#ffffff'));
+//const light = new THREE.SpotLight('#ffffff');
+const light = new THREE.SpotLight('#ffffff');
 light.position.set(0,4.5,0);
 light.castShadow = true;
 light.intensity = 40;
+light.shadow.mapSize.width = 2048;
+light.shadow.mapSize.height = 2048;
+light.shadow.camera.near = 0.2;
+light.shadow.camera.far = 500;
 scene.add(light);
 
 
@@ -59,10 +64,10 @@ const tableWidth = 1.37;
 const tableHeight = 2.74;
 const tableDepth = 0.1;
 const tableMesh = new THREE.Mesh(new THREE.BoxGeometry(tableWidth, tableHeight, tableDepth),
-                                 new THREE.MeshStandardMaterial({color: '#228b22',
+                                 new THREE.MeshStandardMaterial({color: '#008000',
                                                               side: THREE.DoubleSide}));
 tableMesh.castShadow = true;
-//tableMesh.receiveShadow = true;
+tableMesh.receiveShadow = true;
 tableMesh.rotation.x = Math.PI/2;
 tableMesh.position.set(0,0.85,0);
 scene.add(tableMesh);
@@ -77,7 +82,7 @@ const cushionsT_B =[
 ];
 for (let i=0; i<cushionsT_B.length; i++){
   const cushionMeshA = new THREE.Mesh(new THREE.BoxGeometry(cushionWidth, cushionHeight, cushionDepth),
-                                      new THREE.MeshStandardMaterial({color: '#008000',
+                                      new THREE.MeshStandardMaterial({color: '#2e8b57',
                                                                    side: THREE.DoubleSide}));
   cushionMeshA.rotation.x = Math.PI/2;
   cushionMeshA.position.set(cushionsT_B[i].x,cushionsT_B[i].y,cushionsT_B[i].z);
@@ -92,7 +97,7 @@ const cushionsL_R =[
 ];
 for (let i=0; i<cushionsL_R.length; i++){
   const cushionMeshB = new THREE.Mesh(new THREE.BoxGeometry(cushionHeight-1.26,cushionWidth, cushionDepth),
-                                      new THREE.MeshStandardMaterial({color: '#008000',
+                                      new THREE.MeshStandardMaterial({color: '#2e8b57',
                                                                    side: THREE.DoubleSide}));
   cushionMeshB.rotation.x = Math.PI/2;
   cushionMeshB.position.set(cushionsL_R[i].x,cushionsL_R[i].y,cushionsL_R[i].z);
@@ -114,7 +119,7 @@ const legs = [
               ];
 for (let i=0; i<legs.length; i++){
   const legMeshA = new THREE.Mesh(new THREE.BoxGeometry(legsWidth, legsHeight, legsDepth),
-                                 new THREE.MeshStandardMaterial({color: 'purple',
+                                 new THREE.MeshStandardMaterial({color: '#8b008b',
                                                               side: THREE.DoubleSide}));
 legMeshA.rotation.x = Math.PI/2;
 legMeshA.position.set(legs[i].x,legs[i].y,legs[i].z);
@@ -148,7 +153,7 @@ const ballRad = 0.06;
                                                               wireframeLinewidth:2,
                                                               wireframe:true})); */
 const ballMesh = new THREE.Mesh(new THREE.SphereGeometry(ballRad, 10,6),
-                                new THREE.MeshStandardMaterial( {map: ball12}));
+                                new THREE.MeshStandardMaterial( {map: ball10}));
 ballMesh.matrixAutoUpdate = false;
 ballMesh.castShadow = true;
 scene.add(ballMesh);
