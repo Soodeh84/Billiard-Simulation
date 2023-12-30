@@ -23,14 +23,13 @@ window.addEventListener("resize", function() {
   camera.updateProjectionMatrix();
 });
 
-camera.position.set(12, 7, 15);
+camera.position.set(15, 7, 17);
 camera.lookAt(scene.position);
 
 //add spot light and shadow******************************
 scene.add(new THREE.AmbientLight('#ffffff'));
-//const light = new THREE.SpotLight('#ffffff');
 const light = new THREE.SpotLight('#ffffff');
-light.position.set(0,4.5,0);
+light.position.set(0,2.9,0);
 light.castShadow = true;
 light.intensity = 40;
 light.shadow.mapSize.width = 2048;
@@ -59,12 +58,36 @@ const groundMesh = new THREE.Mesh( new THREE.PlaneGeometry( groundX, groundZ),
 groundMesh.rotation.x = Math.PI/2;
 groundMesh.receiveShadow = true;
 scene.add( groundMesh );
+/******************************************************ceiling********************************************************** */
+const ceilingMesh = new THREE.Mesh( new THREE.PlaneGeometry( groundX, groundZ), 
+                                   new THREE.MeshStandardMaterial({wireframe:false, 
+                                                                color: 'gray', 
+                                                                opacity: 0.5,
+                                                                side: THREE.DoubleSide}));
+
+ceilingMesh.rotation.x = Math.PI/2;
+ceilingMesh.position.set(0,4,0);
+scene.add( ceilingMesh );
+/******************************************************cord************************************************************ */
+const cordWidth = 0.01;
+const cordHeight = 1.0;
+const cordDepth = 0.01;
+const cordMesh = new THREE.Mesh(new THREE.BoxGeometry(cordWidth, cordHeight, cordDepth),
+                                 new THREE.MeshStandardMaterial({color: 'white'}));
+cordMesh.position.set(0,3.4,0);
+scene.add(cordMesh);
+/*******************************************************lightbulb******************************************************** */
+const lightBulbRad = 0.07;
+const lightBulbMesh = new THREE.Mesh(new THREE.SphereGeometry(lightBulbRad),
+                                     new THREE.MeshStandardMaterial({color: 'yellow'}));
+lightBulbMesh.position.set(0,2.9,0);
+scene.add(lightBulbMesh);
 /*******************************************************Table*************************************************************/
 const tableWidth = 1.37;
 const tableHeight = 2.74;
 const tableDepth = 0.1;
 const tableMesh = new THREE.Mesh(new THREE.BoxGeometry(tableWidth, tableHeight, tableDepth),
-                                 new THREE.MeshStandardMaterial({color: '#008000',
+                                 new THREE.MeshStandardMaterial({color: 'green',
                                                               side: THREE.DoubleSide}));
 tableMesh.castShadow = true;
 tableMesh.receiveShadow = true;
