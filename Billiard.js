@@ -40,11 +40,14 @@ scene.add(light);
 /*******************************************************Ground*************************************************************/
 const groundX = 6;
 const groundZ = 8;
+const textureLoader = new THREE.TextureLoader();
+const groundTexture = textureLoader.load('PoolBallSkins/ground2.jpg');
+
 const groundMesh = new THREE.Mesh( new THREE.PlaneGeometry( groundX, groundZ), 
                                    new THREE.MeshStandardMaterial({wireframe:false,
                                                                    emissive: '#808080',
                                                                    emissiveIntensity: 0.5, 
-                                                                   color: '#808080',
+                                                                   map: groundTexture,
                                                                    side: THREE.DoubleSide}));
 
 groundMesh.rotation.x = Math.PI/2;
@@ -117,7 +120,7 @@ const cushionsT_B =[
 for (let i=0; i<cushionsT_B.length; i++){
   const cushionMeshA = new THREE.Mesh(new THREE.BoxGeometry(cushionWidth, cushionHeight, cushionDepth),
                                       new THREE.MeshStandardMaterial({color: '#2E4053',
-                                                                   side: THREE.DoubleSide}));
+                                                                      side: THREE.DoubleSide}));
   cushionMeshA.rotation.x = Math.PI/2;
   cushionMeshA.position.set(cushionsT_B[i].x,cushionsT_B[i].y,cushionsT_B[i].z);
   cushionMeshA.castShadow = true;
